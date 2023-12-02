@@ -26,6 +26,7 @@ public class GameRunner extends Application {
     @Override
     public void start(Stage primaryStage) {
         Pane mainLayout = new Pane();
+        mainLayout.setStyle("-fx-background-color: #4682B4;");
 
             Rectangle receptionist = createReceptionist();
         mainLayout.getChildren().add(receptionist);
