@@ -69,21 +69,26 @@ public class GameRunner extends Application {
         List<ImageView> delivers = new ArrayList<>();
         String imagePath = "file:src/main/resources/assets/images/deliver.png";
         int deliverCount = 6;
-        int startX = 10; // Posición inicial X ajustada para que quepa en la ventana
-        int startY = 10;
-        int yIncrement = 80;
-        int imageWidth = 20;
-        int imageHeight = 20;
+        int windowWidth = 600;     // Ancho de la ventana actualizado
+        int windowHeight = 400;    // Altura de la ventana actualizada
+        int imageWidth = 20;       // Ancho de cada ítem
+        int imageHeight = 20;      // Altura de cada ítem
+        int startY = 10;           // Posición inicial Y
+        int yIncrement = (windowHeight - startY * 2 - imageHeight) / (deliverCount - 1); // Incremento en Y ajustado
+
+        // startX calculado para que los ítems comiencen en el lado derecho
+        int startX = windowWidth - imageWidth - 10; // 10 es un margen desde el borde derecho
 
         for (int i = 0; i < deliverCount; i++) {
             ImageView deliver = new ImageView(imagePath);
             deliver.setLayoutX(startX);
-            deliver.setLayoutY(startY + (i * yIncrement));
+            int yPos = startY + (i * yIncrement);
+            deliver.setLayoutY(yPos);
             deliver.setFitWidth(imageWidth);
             deliver.setFitHeight(imageHeight);
 
             // Comprobar si el elemento se sale de la ventana antes de agregarlo
-            if (startY + (i * yIncrement) + imageHeight <= 500) {
+            if (yPos + imageHeight <= windowHeight) {
                 delivers.add(deliver);
             }
         }
