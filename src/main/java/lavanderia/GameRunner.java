@@ -1,4 +1,8 @@
 package lavanderia;
+import javafx.geometry.Pos;
+import javafx.scene.control.Label;
+import javafx.scene.layout.StackPane;
+import javafx.scene.text.Font;
 import lavanderia.models.Lavanderia;
 import lavanderia.monitors.ClienteLavadorMonitor;
 import lavanderia.monitors.DeliverMonitor;
@@ -27,6 +31,13 @@ public class GameRunner extends Application {
     public void start(Stage primaryStage) {
         Pane mainLayout = new Pane();
         mainLayout.setStyle("-fx-background-color: #4682B4;");
+        Label titleLabel = new Label("Lavandería El Diego");
+        titleLabel.setFont(new Font("Arial", 24));
+        titleLabel.setTextFill(Color.WHITE); // Color del texto en blanco para contraste
+
+        mainLayout.getChildren().add(titleLabel);
+        StackPane.setAlignment(titleLabel, Pos.CENTER);
+
 
             Rectangle receptionist = createReceptionist();
         mainLayout.getChildren().add(receptionist);
