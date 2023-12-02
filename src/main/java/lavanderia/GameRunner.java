@@ -46,14 +46,14 @@ public class GameRunner extends Application {
         DeliverMonitor deliverMonitor = new DeliverMonitor(delivers);
 
         ClientProcessingThread clientProcessingThread = new ClientProcessingThread(deliverMonitor, lavanderias, clientBuffer, lavadorTaskBuffer);
-        Thread clienttProcessingThreadInstance = new Thread(clientProcessingThread);
-        clienttProcessingThreadInstance.start();
+        Thread clientProcessingThreadInstance = new Thread(clientProcessingThread);
+        clientProcessingThreadInstance.start();
 
         ClienteLavadorMonitor monitor = new ClienteLavadorMonitor(lavadores, lavanderias, clientBuffer);
 
         ClientCreationThread clientCreationThread = new ClientCreationThread(mainLayout, receptionist, monitor, lavanderias, lavadores);
-        Thread clienttCreationThreadInstance = new Thread(clientCreationThread);
-        clienttCreationThreadInstance.start();
+        Thread clientCreationThreadInstance = new Thread(clientCreationThread);
+        clientCreationThreadInstance.start();
 
         LavadorThread lavadorThread = new LavadorThread(monitor, lavadorTaskBuffer);
         Thread lavadorTaskThreadInstance = new Thread(lavadorThread);
@@ -69,15 +69,15 @@ public class GameRunner extends Application {
         List<ImageView> delivers = new ArrayList<>();
         String imagePath = "file:src/main/resources/assets/images/deliver.png";
         int deliverCount = 6;
-        int windowWidth = 600;     // Ancho de la ventana actualizado
-        int windowHeight = 400;    // Altura de la ventana actualizada
-        int imageWidth = 20;       // Ancho de cada ítem
-        int imageHeight = 20;      // Altura de cada ítem
-        int startY = 10;           // Posición inicial Y
-        int yIncrement = (windowHeight - startY * 2 - imageHeight) / (deliverCount - 1); // Incremento en Y ajustado
+        int windowWidth = 600;
+        int windowHeight = 400;
+        int imageWidth = 20;
+        int imageHeight = 20;
+        int startY = 10;
+        int yIncrement = (windowHeight - startY * 2 - imageHeight) / (deliverCount - 1);
 
-        // startX calculado para que los ítems comiencen en el lado derecho
-        int startX = windowWidth - imageWidth - 10; // 10 es un margen desde el borde derecho
+
+        int startX = windowWidth - imageWidth - 10;
 
         for (int i = 0; i < deliverCount; i++) {
             ImageView deliver = new ImageView(imagePath);
@@ -87,7 +87,7 @@ public class GameRunner extends Application {
             deliver.setFitWidth(imageWidth);
             deliver.setFitHeight(imageHeight);
 
-            // Comprobar si el elemento se sale de la ventana antes de agregarlo
+
             if (yPos + imageHeight <= windowHeight) {
                 delivers.add(deliver);
             }
@@ -105,12 +105,12 @@ public class GameRunner extends Application {
     }
 
     private List<Lavanderia> createLavanderias() {
-        int lavanderiaCount = 20; // Total de lavanderías
-        int itemsPerRow = 5;      // Número de elementos por fila
-        int initialX = 100;       // Posición inicial X
-        int initialY = 100;       // Posición inicial Y
-        int xIncrement = 80;      // Incremento en X entre lavanderías
-        int yIncrement = 60;      // Incremento en Y entre filas
+        int lavanderiaCount = 20;
+        int itemsPerRow = 5;
+        int initialX = 100;
+        int initialY = 100;
+        int xIncrement = 80;
+        int yIncrement = 60;
 
         List<Lavanderia> lavanderiaRooms = new ArrayList<>();
         for (int i = 0; i < lavanderiaCount; i++) {
@@ -126,15 +126,26 @@ public class GameRunner extends Application {
 
     private List<ImageView> createLavadores() {
         List<ImageView> lavadores = new ArrayList<>();
-        for (int i = 0; i < 2; i++) {
-            ImageView lavador = new ImageView("file:src/main/resources/assets/images/lavador.png");
-            lavador.setLayoutX(250 + 20 * i);
-            lavador.setLayoutY(720);
-            lavador.setFitHeight(25);
-            lavador.setFitWidth(25);
+        String imagePath = "file:src/main/resources/assets/images/lavador.png";
+        int lavadorCount = 2;
+        int windowWidth = 600;
+        int windowHeight = 400;
+        int imageWidth = 25;
+        int imageHeight = 25;
+        int startX = windowWidth / 2 - (lavadorCount * imageWidth) / 2;
+        int startY = windowHeight - imageHeight - 20;
+
+        for (int i = 0; i < lavadorCount; i++) {
+            ImageView lavador = new ImageView(imagePath);
+            lavador.setLayoutX(startX + imageWidth * i);
+            lavador.setLayoutY(startY);
+            lavador.setFitHeight(imageHeight);
+            lavador.setFitWidth(imageWidth);
             lavadores.add(lavador);
+
             mainLayout.getChildren().add(lavador);
         }
+
         return lavadores;
     }
 
