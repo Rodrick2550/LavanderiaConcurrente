@@ -26,17 +26,22 @@ public class ClientProcessingThread implements Runnable {
             try {
                 ImageView client = clientBuffer.take();
                 Lavanderia assignedLavanderia = findLavanderiaWithClient(lavanderias, client);
+
                 if (assignedLavanderia != null) {
-                    deliverMonitor.assignDeliverToLavanderia(assignedLavanderia, () -> {
-                        try {
-                            lavadorTaskBuffer.put(assignedLavanderia);
-                        } catch (InterruptedException e) {
-                            Thread.currentThread().interrupt();
+                    deliverMonitor.assignDeliverToLavanderia(assignedLavanderia, new Runnable() {
+                        @Override
+                        public void run() {
+                            try {
+                                lavadorTaskBuffer.put(assignedLavanderia);
+                            } catch (InterruptedException e) {
+                                Thread.currentThread().interrupt();
+                            }
                         }
                     });
                 }
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
+                break;
             }
         }
     }

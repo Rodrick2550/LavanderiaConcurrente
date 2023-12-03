@@ -39,14 +39,14 @@ public class ClientCreationThread implements Runnable {
     }
 
     private void createAndAnimateClient() {
-        ImageView patient = new ImageView("file:src/main/resources/assets/images/client.png");
-        patient.setLayoutX(10);
-        patient.setLayoutY(10);
-        patient.setFitHeight(30);
-        patient.setFitWidth(30);
-        mainLayout.getChildren().add(patient);
+        ImageView client = new ImageView("file:src/main/resources/assets/images/client.png");
+        client.setLayoutX(10);
+        client.setLayoutY(10);
+        client.setFitHeight(30);
+        client.setFitWidth(30);
+        mainLayout.getChildren().add(client);
 
-        animateClientToReception(patient);
+        animateClientToReception(client);
     }
 
     private void animateClientToReception(ImageView client) {
