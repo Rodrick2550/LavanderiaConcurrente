@@ -33,7 +33,7 @@ public class GameRunner extends Application {
         mainLayout.setStyle("-fx-background-color: #4682B4;");
         Label titleLabel = new Label("Lavandería 'El Diego'");
         titleLabel.setFont(new Font("Arial", 24));
-        titleLabel.setTextFill(Color.WHITE); // Color del texto en blanco para contraste
+        titleLabel.setTextFill(Color.WHITE);
 
         mainLayout.getChildren().add(titleLabel);
         StackPane.setAlignment(titleLabel, Pos.CENTER);
