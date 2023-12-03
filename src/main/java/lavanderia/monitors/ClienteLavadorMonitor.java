@@ -44,11 +44,21 @@ public class ClienteLavadorMonitor {
     public synchronized void assignLavadorToTask(Lavanderia lavanderia) {
         if (!availableLavadores.isEmpty()) {
             ImageView lavador = availableLavadores.remove();
+
+
             Platform.runLater(() -> {
+
                 animateLavadorToLavanderia(lavador, lavanderia, () -> {
+
                     animateClientOut(lavanderia.getAssignedClient());
+
+
                     availableLavadores.add(lavador);
+
+
                     animateLavadorBack(lavador);
+
+
                     markLavanderiaAsAvailable(lavanderia);
                 });
             });
