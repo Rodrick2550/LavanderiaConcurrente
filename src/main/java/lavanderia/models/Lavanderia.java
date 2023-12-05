@@ -9,7 +9,7 @@ public class Lavanderia {
     private ImageView assignedLavador;
 
     public Lavanderia(int x, int y) {
-        visualRepresentation = new ImageView("file:src/main/resources/assets/images/clinica.png");
+        visualRepresentation = new ImageView("file:src/main/resources/assets/images/lavadora.png");
         visualRepresentation.setLayoutX(x);
         visualRepresentation.setLayoutY(y);
         visualRepresentation.setFitHeight(30);
